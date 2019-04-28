@@ -3,7 +3,7 @@ public class Edge {
 
     private Node node1;
     private Node node2;
-    private double cost;
+    private Double cost;
 
 
     public Edge(Node node1, Node node2, double cost) {
@@ -32,7 +32,7 @@ public class Edge {
         return cost;
     }
 
-    public void setCost(double cost) {
+    public void setCost(Double cost) {
         this.cost = cost;
     }
 }

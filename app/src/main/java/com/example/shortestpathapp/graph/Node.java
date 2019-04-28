@@ -7,11 +7,11 @@ import java.util.Set;
 public class Node {
 
     private String name;
-    private double pos_x;
-    private double pos_y;
-    private double g;
-    private double h;
-    private double f;
+    private Double pos_x;
+    private Double pos_y;
+    private Double g;
+    private Double h;
+    private Double f;
     private Node parent;
     private Set<Node> neighbours;
 
@@ -20,7 +20,7 @@ public class Node {
         this.pos_x = pos_x;
         this.pos_y = pos_y;
         this.neighbours = new HashSet<>();
-        this.f = 0;
+        this.f = 0.0;
     }
 
     public String getName() {
@@ -31,38 +31,38 @@ public class Node {
         this.name = name;
     }
 
-    public double getPos_x() {
+    public Double getPos_x() {
         return pos_x;
     }
 
-    public void setPos_x(double pos_x) {
+    public void setPos_x(Double pos_x) {
         this.pos_x = pos_x;
     }
 
-    public double getPos_y() {
+    public Double getPos_y() {
         return pos_y;
     }
 
-    public void setPos_y(double pos_y) {
+    public void setPos_y(Double pos_y) {
         this.pos_y = pos_y;
     }
 
 
-    public double getF() {
+    public Double getF() {
         return f;
     }
 
-    public void setF(double f) {
+    public void setF(Double f) {
         this.f = f;
     }
-    public double getG() {
+    public Double getG() {
         return g;
     }
 
-    public void setG(double g) {
+    public void setG(Double g) {
         this.g = g;
     }
-    public double getH() {
+    public Double getH() {
         return h;
     }
 

@@ -37,7 +37,7 @@ public class MainActivityController {
     public static String aStarSearch(Graph graph, Node source, Node target) {
         Set<Node> settled = new HashSet<>();
         Set<Node> unsettled = new HashSet<>();
-        source.setG(0);
+        source.setG(0.0);
         source.setF(euclideanDist(source, target));
         unsettled.add(source);
         boolean found = false;
@@ -82,15 +82,15 @@ public class MainActivityController {
 
     public static Graph generateGraph() {
         Graph graph = new Graph();
-        Node nodeA = new Node("A", 0, 0);
-        Node nodeB = new Node("B", 0, 5);
-        Node nodeC = new Node("C", 2, 7);
-        Node nodeD = new Node("D", 3, 2);
-        Node nodeE = new Node("E", 5, 4);
-        Node nodeF = new Node("F", 5, 8);
-        Node nodeG = new Node("G", 7, 6);
+        Node nodeA = new Node("A", 0.0, 0.0);
+        Node nodeB = new Node("B", 0.0, 5.0);
+        Node nodeC = new Node("C", 2.0, 7.0);
+        Node nodeD = new Node("D", 3.0, 2.0);
+        Node nodeE = new Node("E", 5.0, 4.0);
+        Node nodeF = new Node("F", 5.0, 8.0);
+        Node nodeG = new Node("G", 7.0, 6.0);
         graph.addNode(nodeA).addNode(nodeB).addNode(nodeC).addNode(nodeD)
-                .addNode(nodeE).addNode(nodeF).addNode(nodeF).addNode(nodeG);
+                .addNode(nodeE).addNode(nodeF).addNode(nodeG);
 
         graph
                 .addEdge(new Edge(nodeA, nodeB, 8))
@@ -111,21 +111,25 @@ public class MainActivityController {
 
     public static Graph generateGraph1() {
         Graph graph = new Graph();
-        Node nodeA = new Node("A", 0, 0);
+        Node nodeA = new Node("A", 0.0, 0.0);
         Node nodeB = new Node("B", 0.2, 3.5);
-        Node nodeC = new Node("C", 0, 6.3);
+        Node nodeC = new Node("C", 0.0, 6.3);
         Node nodeD = new Node("D", 2.7, 0.2);
-        Node nodeE = new Node("E", 2, 2);
+        Node nodeE = new Node("E", 2.0, 2.0);
         Node nodeF = new Node("F", 2.5, 4.5);
-        Node nodeG = new Node("G", 2, 6.7);
-        Node nodeH = new Node("H", 5, 1);
-        Node nodeI = new Node("I", 5, 4);
+        Node nodeG = new Node("G", 2.0, 6.7);
+        Node nodeH = new Node("H", 5.0, 1.0);
+        Node nodeI = new Node("I", 5.0, 4.0);
         Node nodeJ = new Node("J", 4.8, 6.4);
-        Node nodeK = new Node("K", 7, 0);
-        Node nodeL = new Node("L", 7, 2.5);
-        Node nodeM = new Node("M", 7, 5);
-        Node nodeN = new Node("N", 7, 7);
-        Node nodeO = new Node("O", 9, 2.6);
+        Node nodeK = new Node("K", 7.0, 0.0);
+        Node nodeL = new Node("L", 7.0, 2.5);
+        Node nodeM = new Node("M", 7.0, 5.0);
+        Node nodeN = new Node("N", 7.0, 7.0);
+        Node nodeO = new Node("O", 9.0, 2.6);
+        graph.addNode(nodeA).addNode(nodeB).addNode(nodeC).addNode(nodeD)
+                .addNode(nodeE).addNode(nodeF).addNode(nodeG).addNode(nodeH)
+                .addNode(nodeI).addNode(nodeJ).addNode(nodeK).addNode(nodeL)
+                .addNode(nodeM).addNode(nodeN).addNode(nodeO);
 
         graph
                 .addEdge(new Edge(nodeA, nodeB, 10))

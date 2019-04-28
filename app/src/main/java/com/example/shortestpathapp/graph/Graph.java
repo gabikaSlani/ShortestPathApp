@@ -1,8 +1,7 @@
 package com.example.shortestpathapp.graph;
 
-import android.os.Build;
-
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 public class Graph {
@@ -47,5 +46,29 @@ public class Graph {
             }
         }
         return -1;
+    }
+
+    public double getMinimalXPos() {
+        Optional<Node> node = nodes.stream()
+                .min((node1, node2) -> node1.getPos_x().compareTo(node2.getPos_x()));
+        return node.isPresent() ? node.get().getPos_x() : null;
+    }
+
+    public double getMaximalXPos() {
+        Optional<Node> node = nodes.stream()
+                .max((node1, node2) -> node1.getPos_x().compareTo(node2.getPos_x()));
+        return node.isPresent() ? node.get().getPos_x() : null;
+    }
+
+    public double getMinimalYPos() {
+        Optional<Node> node = nodes.stream()
+                .min((node1, node2) -> node1.getPos_y().compareTo(node2.getPos_y()));
+        return node.isPresent() ? node.get().getPos_y() : null;
+    }
+
+    public double getMaximalYPos() {
+        Optional<Node> node = nodes.stream()
+                .max((node1, node2) -> node1.getPos_y().compareTo(node2.getPos_y()));
+        return node.isPresent() ? node.get().getPos_y() : null;
     }
 }
