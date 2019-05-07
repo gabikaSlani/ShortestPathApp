@@ -3,6 +3,7 @@ package com.example.shortestpathapp;
 import com.example.shortestpathapp.graph.Edge;
 import com.example.shortestpathapp.graph.Graph;
 import com.example.shortestpathapp.graph.Node;
+import com.example.shortestpathapp.graph.Path;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,7 +25,6 @@ public class MainActivityController {
         Node lowestDistanceNode = null;
         double lowestDistance = Double.MAX_VALUE;
         for (Node node : unsettledNodes) {
-            System.out.println(node.getName() + "f=" + node.getF());
             double nodeDistance = node.getF();
             if (nodeDistance < lowestDistance) {
                 lowestDistance = nodeDistance;
@@ -37,17 +37,14 @@ public class MainActivityController {
     public static String aStarSearch(Graph graph, Node source, Node target) {
         Set<Node> settled = new HashSet<>();
         Set<Node> unsettled = new HashSet<>();
-        source.setG(0.0);
         source.setF(euclideanDist(source, target));
         unsettled.add(source);
-        boolean found = false;
-        while (!(unsettled.isEmpty() || found)) {
+        while (!unsettled.isEmpty()) {
             Node current = getLowestDistanceNode(unsettled);
             unsettled.remove(current);
             settled.add(current);
 
             if (current.equals(target)) {
-                found = true;
                 return getPath(target);
             }
 
@@ -66,17 +63,16 @@ public class MainActivityController {
                 }
             }
         }
-        return "No path exists.";
+        return "Path does not exist.";
     }
 
     public static String getPath(Node target) {
-        List<Node> path = new ArrayList<>();
+        Path path = new Path();
 
         for (Node node = target; node != null; node = node.getParent()) {
-            path.add(node);
+            path.addNode(node);
         }
 
-        Collections.reverse(path);
         return path.toString();
     }
 

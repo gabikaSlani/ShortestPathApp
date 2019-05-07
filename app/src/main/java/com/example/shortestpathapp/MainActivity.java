@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.shortestpathapp.graph.Graph;
+import com.example.shortestpathapp.graph.Node;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,19 +29,28 @@ public class MainActivity extends AppCompatActivity {
         endNode = findViewById(R.id.endNode);
         resultPath = findViewById(R.id.resultPathText);
         findPathBtn = findViewById(R.id.findPathBtn);
-
-        findPathBtn.setOnClickListener(e -> findPath() );
+        findPathBtn.setOnClickListener(e -> findPath());
     }
 
     public Graph getGraph() {
         return graph;
     }
 
+    private boolean invalidGivenNodesNames() {
+        return (graph.getNode(startNode.getText().toString()) == null ||
+                graph.getNode(endNode.getText().toString()) == null);
+    }
+
     private void findPath() {
-        String path = MainActivityController.findShortestPath(
-                graph,
-                startNode.getText().toString(),
-                endNode.getText().toString());
-        resultPath.setText(path);
+        if (invalidGivenNodesNames()) {
+            resultPath.setText("Invalid nodes given");
+        } else {
+            String path = MainActivityController.findShortestPath(
+                    graph,
+                    startNode.getText().toString(),
+                    endNode.getText().toString());
+            resultPath.setText(path);
+            graph.clearNodes();
+        }
     }
 }

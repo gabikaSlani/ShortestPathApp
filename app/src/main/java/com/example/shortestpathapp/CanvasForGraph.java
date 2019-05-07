@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -75,7 +76,7 @@ public class CanvasForGraph extends View {
 
     private void paintNodes(Canvas canvas, Graph graph, int lineGap) {
         for (Node node : graph.getNodes()) {
-            int r = 50;
+            int r = 40;
             int x = (int) (node.getPos_x() * lineGap) + START_X;
             int y = (int) (node.getPos_y() * lineGap) + START_Y;
             RectF rectF = new RectF(x-r, y-r, x+r, y+r);

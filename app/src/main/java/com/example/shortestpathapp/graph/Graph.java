@@ -6,15 +6,26 @@ import java.util.Set;
 
 public class Graph {
 
-    private Set<Node> nodes = new HashSet<>();
-    private Set<Edge> edges = new HashSet<>();
+    private Set<Node> nodes;
+    private Set<Edge> edges;
 
     public Graph() {
+        nodes = new HashSet<>();
+        edges = new HashSet<>();
     }
 
     public Graph addNode(Node node) {
         this.nodes.add(node);
         return this;
+    }
+
+    public void clearNodes(){
+        for(Node node: nodes){
+            node.setF(0.0);
+            node.setG(0.0);
+            node.setH(0.0);
+            node.setParent(null);
+        }
     }
 
     public Graph addEdge(Edge edge) {
@@ -36,7 +47,8 @@ public class Graph {
     }
 
     public Node getNode(String name) {
-        return nodes.stream().filter(node -> node.getName().equals(name)).findFirst().get();
+        Optional<Node> node = nodes.stream().filter(n -> n.getName().equals(name)).findFirst();
+        return node.isPresent() ? node.get() : null;
     }
 
     public double getEdgeCost(Node node1, Node node2) {

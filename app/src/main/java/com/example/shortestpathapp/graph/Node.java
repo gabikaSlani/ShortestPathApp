@@ -21,6 +21,8 @@ public class Node {
         this.pos_y = pos_y;
         this.neighbours = new HashSet<>();
         this.f = 0.0;
+        this.h = 0.0;
+        this.g = 0.0;
     }
 
     public String getName() {
