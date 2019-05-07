@@ -34,7 +34,7 @@ public class MainActivityController {
         return lowestDistanceNode;
     }
 
-    public static String aStarSearch(Graph graph, Node source, Node target) {
+    public static Path aStarSearch(Graph graph, Node source, Node target) {
         Set<Node> settled = new HashSet<>();
         Set<Node> unsettled = new HashSet<>();
         source.setF(euclideanDist(source, target));
@@ -63,17 +63,17 @@ public class MainActivityController {
                 }
             }
         }
-        return "Path does not exist.";
+        return new Path();
     }
 
-    public static String getPath(Node target) {
+    public static Path getPath(Node target) {
         Path path = new Path();
 
         for (Node node = target; node != null; node = node.getParent()) {
             path.addNode(node);
         }
 
-        return path.toString();
+        return path;
     }
 
     public static Graph generateGraph() {
@@ -155,7 +155,7 @@ public class MainActivityController {
         return graph;
     }
 
-    public static String findShortestPath(Graph graph, String nodeName1, String nodeName2){
+    public static Path findShortestPath(Graph graph, String nodeName1, String nodeName2){
         Node source = graph.getNode(nodeName1);
         Node target = graph.getNode(nodeName2);
         return aStarSearch(graph, source, target);

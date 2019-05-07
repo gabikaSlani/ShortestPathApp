@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.shortestpathapp.graph.Graph;
 import com.example.shortestpathapp.graph.Node;
+import com.example.shortestpathapp.graph.Path;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,10 +26,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         graph = MainActivityController.generateGraph1();
         setContentView(R.layout.activity_main);
+
         startNode = findViewById(R.id.startNode);
         endNode = findViewById(R.id.endNode);
         resultPath = findViewById(R.id.resultPathText);
         findPathBtn = findViewById(R.id.findPathBtn);
+        canvas = findViewById(R.id.canvas);
+
         findPathBtn.setOnClickListener(e -> findPath());
     }
 
@@ -45,11 +49,18 @@ public class MainActivity extends AppCompatActivity {
         if (invalidGivenNodesNames()) {
             resultPath.setText("Invalid nodes given");
         } else {
-            String path = MainActivityController.findShortestPath(
+            Path path = MainActivityController.findShortestPath(
                     graph,
                     startNode.getText().toString(),
                     endNode.getText().toString());
-            resultPath.setText(path);
+            if (path.isEmpty()) {
+                resultPath.setText("Path does not exist.");
+            }
+            else {
+                resultPath.setText(path.toString());
+                canvas.showPath(path);
+                canvas.invalidate();
+            }
             graph.clearNodes();
         }
     }
